@@ -21,7 +21,7 @@
             <input type="date" name="end_date">
             <button type="submit">Fetch Data</button>
         </form>
-        <div id="response"></div> <!-- Container for the response -->
+        <div id="response"></div>
 
         <script>
             document.querySelector('form').addEventListener('submit', function(e) {

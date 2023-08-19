@@ -34,18 +34,13 @@ if (isset($_GET['currency']) && isset($_GET['start_date']) && isset($_GET['end_d
 
         $data = [];
         while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
+            $data[$row['time_period']] = $row['obs_value'];
         }
         
+        $output['currency'] = $currency;
         $output['data'] = $data;
-        $json_content = json_encode($output);
-
-        $file_name = "$currency-$start_date-$end_date.json";
-        $file_path = "../output/$file_name";
-        
-        file_put_contents($file_path, $json_content);
-
-        echo "<p>JSON data saved to $file_name<p>";
+        $json_content = json_encode($output, JSON_PRETTY_PRINT);
+        echo "<pre>$json_content</pre>";
     }
 }
 

@@ -53,3 +53,9 @@ button {
     color: white;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
+
+#response {
+    padding: 10%;
+    text-align: left;
+    font-size: large;
+}
