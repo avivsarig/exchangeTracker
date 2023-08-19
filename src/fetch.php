@@ -27,7 +27,6 @@ function fetchDataFunc($conn, $url, $tableName) {
     for ($i = 0; $i < count($matches[1]); $i++) {
         $time_period = $matches[1][$i];
         $obs_value = $matches[2][$i];
-        $status = $matches[3][$i];
 
         // Bind parameters and execute the prepared statement
         $stmt->bind_param("sds", $time_period, $obs_value, $status);
