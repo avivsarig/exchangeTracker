@@ -18,7 +18,7 @@ foreach ($tables as $tableName => $createTableQuery) {
                 throw new Exception("Error creating table $tableName: " . $conn->error);
             }
         } catch (Exception $e) {
-            echo "<script>console.log(" . $e . ")</script>";
+            error_log($e);
         }
     } else {
         $result = $conn->query("SELECT COUNT(*) FROM $tableName");
@@ -28,11 +28,11 @@ foreach ($tables as $tableName => $createTableQuery) {
             try {
                 require_once("../src/fetch.php");
             } catch (Exception $e) {
-                echo "<script>console.log(" . $e . ")</script>";
+                error_log($e);
             }
             break;
         } else {
-            echo "<script>console.log('Table " . $tableName . " is populated with " . $row[0] . " rows.')</script>";
+            error_log("Table " . $tableName . " is populated with " . $row[0] . " rows.");
         }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-echo "<script>console.log('Fetching data')</script>";
+error_log("Fetching data");
 
 function fetchDataFunc($conn, $url, $tableName) {
     // Initialize cURL session
@@ -10,7 +10,7 @@ function fetchDataFunc($conn, $url, $tableName) {
     curl_close($curl);
 
     if (!$resp) {
-        echo "<script>console.log('Failed to fetch the content from URL')</script>";
+        error_log("Failed to fetch the content from URL");
         return [];
     }
     
@@ -18,7 +18,7 @@ function fetchDataFunc($conn, $url, $tableName) {
     preg_match_all('/<Obs TIME_PERIOD="(\d{4}-\d{2}-\d{2})" OBS_VALUE="([\d.]+)" RELEASE_STATUS="YP"><\/Obs>/', $resp, $matches);
 
     if (empty($matches[1]) || empty($matches[2])) {
-        echo "<script>console.log('No matches found')</script>";
+        error_log("No matches found");
         return [];
     }
     

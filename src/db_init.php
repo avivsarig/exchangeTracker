@@ -4,7 +4,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PW);
 
 // Check connection
 if ($conn->connect_error) {
-    echo "<script>console.log('Connection failed: " . $conn->connect_error . "')</script>";
+    error_log("Connection failed: " . $conn->connect_error);
     exit;
 }
 
@@ -15,21 +15,21 @@ $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
     // Select the existing database
     if (!mysqli_select_db($conn, DB_NAME)) {
-        echo "<script>console.log('Error selecting existing database: " . $conn->error . "')</script>";
+        error_log("Error selecting existing database: " . $conn->error);
         exit;
     }
-    echo "<script>console.log('Database already exists, connected successfully')</script>";
+    error_log("Database already exists, connected successfully");
 } else {
     // Create and select new database
     $sql = "CREATE DATABASE " . DB_NAME;
     if ($conn->query($sql) === TRUE) {
         if (!mysqli_select_db($conn, DB_NAME)) {
-            echo "<script>console.log('Error selecting newly created database: " . $conn->error . "')</script>";
+            error_log("Error selecting newly created database: " . $conn->error);
             exit;
         }
-        echo "<script>console.log('Database created successfully')</script>";
+        error_log("Database created successfully");
     } else {
-        echo "<script>console.log('Error creating database: " . $conn->error . "')</script>";
+        error_log("Error creating database: " . $conn->error);
         exit;
     }
 }

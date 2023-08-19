@@ -7,15 +7,19 @@
     </head>
     <body>
         <h1>Exchange Tracker</h1>
-        <?php
-            require_once('../config.php');
-            require('../src/db_conn.php');
-
-            // Start output buffering
-            ob_start();
-
-            // End output buffering
-            ob_end_flush();
-        ?>
+        <form action="../src/api.php" method="get">
+            <label for="currency">Currency:</label>
+            <select name="currency">
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="gbp">GBP</option>
+            </select>
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date">
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date">
+            <button type="submit">Fetch Data</button>
+        </form>
+        
     </body>
 </html>
