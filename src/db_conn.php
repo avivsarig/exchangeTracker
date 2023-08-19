@@ -1,5 +1,5 @@
 <?php
-require('../src/db_init.php');
+require('./db_init.php');
 
 $conn->select_db(DB_NAME);
 
@@ -26,7 +26,7 @@ foreach ($tables as $tableName => $createTableQuery) {
         
         if ($row[0] <= 0) {
             try {
-                require_once("../src/fetch.php");
+                require_once("./fetch.php");
             } catch (Exception $e) {
                 error_log($e);
             }
